@@ -209,7 +209,7 @@ namespace WindEditor
             GL.DeleteBuffer(m_vertColors);
         }
 
-        public void Render(Matrix4 viewMatrix, Matrix4 projMatrix)
+        public void Render(Matrix4 viewMatrix, Matrix4 projMatrix, bool xray = false)
         {
             if (m_isDirty)
             {
@@ -243,6 +243,14 @@ namespace WindEditor
             GL.Enable(EnableCap.CullFace);
             GL.Disable(EnableCap.Blend);
             GL.DepthMask(true);
+
+            if (xray)
+            {
+                GL.Disable(EnableCap.DepthTest);
+            } else
+            {
+                GL.Enable(EnableCap.DepthTest);
+            }
             //GL.BlendFunc(BlendingFactorSrc.SrcAlpha, BlendingFactorDest.OneMinusSrcAlpha);
 
 

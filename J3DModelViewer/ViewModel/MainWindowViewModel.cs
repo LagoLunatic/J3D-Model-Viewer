@@ -63,6 +63,7 @@ namespace J3DModelViewer.ViewModel
         private HighresScreenshotViewModel m_highresScreenshot;
         private ModelRenderOptionsViewModel m_modelRenderOptions;
         private WLineBatcher m_lineBatcher;
+        private WLineBatcher m_skeletonLineBatcher;
 
         public MainWindowViewModel()
         {
@@ -91,6 +92,7 @@ namespace J3DModelViewer.ViewModel
             m_glControl = child;
             m_frameBuffer = new WFrameBuffer(m_glControl.Width, m_glControl.Height);
             m_lineBatcher = new WLineBatcher();
+            m_skeletonLineBatcher = new WLineBatcher();
 
             m_alphaVisualizationShader = new Shader("AlphaVisualize");
             m_alphaVisualizationShader.CompileSource(File.ReadAllText("resources/shaders/Debug_AlphaVisualizer.vert"), ShaderType.VertexShader);
@@ -338,6 +340,7 @@ namespace J3DModelViewer.ViewModel
             m_dtStopwatch.Restart();
             m_renderCamera.Tick(deltaTime);
             m_lineBatcher.Tick(deltaTime);
+            m_skeletonLineBatcher.Tick(deltaTime);
 
             deltaTime = WMath.Clamp(deltaTime, 0, 0.25f); // quarter second max because debugging
             m_timeSinceStartup += deltaTime;
@@ -366,8 +369,12 @@ namespace J3DModelViewer.ViewModel
 
             foreach (var j3d in m_loadedModels)
             {
-                j3d.SetHardwareLight(0, m_mainLight);
                 j3d.Tick(deltaTime);
+            }
+
+            foreach (var j3d in m_loadedModels)
+            {
+                j3d.SetHardwareLight(0, m_mainLight);
                 j3d.Render(m_renderCamera.ViewMatrix, m_renderCamera.ProjectionMatrix, Matrix4.Identity, true, false);
             }
             foreach (var j3d in m_loadedModels)
@@ -410,7 +417,7 @@ namespace J3DModelViewer.ViewModel
             if (m_modelRenderOptions.ShowBones)
             {
                 foreach (var j3d in m_loadedModels)
-                    j3d.DrawBones(m_lineBatcher);
+                    j3d.DrawBones(m_skeletonLineBatcher);
             }
 
             // Debug Rendering
@@ -426,6 +433,7 @@ namespace J3DModelViewer.ViewModel
 
             // Blit the framebuffer to the backbuffer so it shows up on screen.
             m_lineBatcher.Render(m_renderCamera.ViewMatrix, m_renderCamera.ProjectionMatrix);
+            m_skeletonLineBatcher.Render(m_renderCamera.ViewMatrix, m_renderCamera.ProjectionMatrix, true);
             m_frameBuffer.BlitToBackbuffer(m_viewportWidth, m_viewportHeight);
         }
 
@@ -475,6 +483,7 @@ namespace J3DModelViewer.ViewModel
                 j3d.Dispose();
 
             m_lineBatcher.ReleaseResources();
+            m_skeletonLineBatcher.ReleaseResources();
         }
 
         private void DrawFixedGrid()
