@@ -1,4 +1,4 @@
-﻿ using OpenTK.Graphics.OpenGL;
+﻿using OpenTK.Graphics.OpenGL;
 using OpenTK;
 using WindEditor;
 using System.IO;
@@ -274,7 +274,7 @@ namespace J3DModelViewer.ViewModel
                     break;
             }
 
-			// m_loadedModels.Sort((x,y) => x.Name.CompareTo(y.Name));
+            // m_loadedModels.Sort((x,y) => x.Name.CompareTo(y.Name));
 
             if (PropertyChanged != null)
             {
@@ -342,7 +342,7 @@ namespace J3DModelViewer.ViewModel
             deltaTime = WMath.Clamp(deltaTime, 0, 0.25f); // quarter second max because debugging
             m_timeSinceStartup += deltaTime;
 
-            if(m_modelRenderOptions.AnimateLight)
+            if (m_modelRenderOptions.AnimateLight)
             {
                 // Rotate our light
                 float angleInRad = m_timeSinceStartup % WMath.DegreesToRadians(360f);
@@ -354,27 +354,27 @@ namespace J3DModelViewer.ViewModel
                 DrawFixedGrid();
             }
 
-			if(m_modelRenderOptions.DepthPrePass)
-			{
-				foreach (var j3d in m_loadedModels)
-				{
-					// Render a depth-only pre pass. We need to tell it to render translucent and opaque objects so that
-					// they both write in to the depth buffer (it's a specific pre-pass so they should)
-					j3d.Render(m_renderCamera.ViewMatrix, m_renderCamera.ProjectionMatrix, Matrix4.Identity, true, true, true);
-				}
-			}
+            if (m_modelRenderOptions.DepthPrePass)
+            {
+                foreach (var j3d in m_loadedModels)
+                {
+                    // Render a depth-only pre pass. We need to tell it to render translucent and opaque objects so that
+                    // they both write in to the depth buffer (it's a specific pre-pass so they should)
+                    j3d.Render(m_renderCamera.ViewMatrix, m_renderCamera.ProjectionMatrix, Matrix4.Identity, true, true, true);
+                }
+            }
 
-			foreach (var j3d in m_loadedModels)
+            foreach (var j3d in m_loadedModels)
             {
                 j3d.SetHardwareLight(0, m_mainLight);
                 j3d.Tick(deltaTime);
-				j3d.Render(m_renderCamera.ViewMatrix, m_renderCamera.ProjectionMatrix, Matrix4.Identity, true, false);
-			}
-			foreach (var j3d in m_loadedModels)
-			{
-				// Do a second render pass after all objects to render translucent ones.
-				j3d.Render(m_renderCamera.ViewMatrix, m_renderCamera.ProjectionMatrix, Matrix4.Identity, false, true);
-			}
+                j3d.Render(m_renderCamera.ViewMatrix, m_renderCamera.ProjectionMatrix, Matrix4.Identity, true, false);
+            }
+            foreach (var j3d in m_loadedModels)
+            {
+                // Do a second render pass after all objects to render translucent ones.
+                j3d.Render(m_renderCamera.ViewMatrix, m_renderCamera.ProjectionMatrix, Matrix4.Identity, false, true);
+            }
 
             if (m_modelRenderOptions.ShowPivot)
             {
