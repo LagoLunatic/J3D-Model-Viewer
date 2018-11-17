@@ -1,6 +1,6 @@
 [submodule "JStudio"]
 	path = JStudio
-	url = https://github.com/LordNed/JStudio.git
+	url = https://github.com/LagoLunatic/JStudio.git
 [submodule "WCommon"]
 	path = WCommon
 	url = https://github.com/LordNed/WCommon.git
