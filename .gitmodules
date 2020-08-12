@@ -1,10 +1,13 @@
 [submodule "JStudio"]
 	path = JStudio
-	url = https://github.com/LagoLunatic/JStudio.git
+	url = https://github.com/LordNed/JStudio.git
 [submodule "WCommon"]
 	path = WCommon
 	url = https://github.com/LordNed/WCommon.git
-[submodule "WArchiveTools"]
-	path = WArchiveTools
-	url = https://github.com/LordNed/WArchive-Tools.git
-	branch = ISO_Opening_Experiments
+[submodule "WArchive-Tools"]
+	path = WArchive-Tools
+	url = https://github.com/LagoLunatic/WArchive-Tools.git
+	branch = master
+[submodule "GameFormatReader"]
+	path = GameFormatReader
+	url = https://github.com/LagoLunatic/GameFormatReader

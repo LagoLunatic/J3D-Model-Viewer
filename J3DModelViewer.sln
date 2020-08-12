@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30002.166
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "J3DModelViewer", "J3DModelViewer\J3DModelViewer.csproj", "{9325A8F9-924C-4A20-982A-7142F14BF833}"
 EndProject
@@ -9,7 +9,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JStudio", "JStudio\JStudio.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCommon", "WCommon\WCommon.csproj", "{E8AF46CC-76DC-4541-A578-5067EAD07087}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArchiveToolsLib", "WArchiveTools\ArchiveToolsLib\ArchiveToolsLib.csproj", "{B715685D-1603-4CE3-8EA1-552B01C2BA4B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArchiveToolsLib", "WArchive-Tools\ArchiveToolsLib\ArchiveToolsLib.csproj", "{B715685D-1603-4CE3-8EA1-552B01C2BA4B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E8AF46CC-76DC-4541-A578-5067EAD07087} = {E8AF46CC-76DC-4541-A578-5067EAD07087}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFormatReader", "GameFormatReader\GameFormatReader\GameFormatReader.csproj", "{AFCE536D-92FF-4EE5-8536-731D2CD5FBCA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,8 +56,19 @@ Global
 		{B715685D-1603-4CE3-8EA1-552B01C2BA4B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B715685D-1603-4CE3-8EA1-552B01C2BA4B}.Release|x64.ActiveCfg = Release|Any CPU
 		{B715685D-1603-4CE3-8EA1-552B01C2BA4B}.Release|x64.Build.0 = Release|Any CPU
+		{AFCE536D-92FF-4EE5-8536-731D2CD5FBCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFCE536D-92FF-4EE5-8536-731D2CD5FBCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFCE536D-92FF-4EE5-8536-731D2CD5FBCA}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{AFCE536D-92FF-4EE5-8536-731D2CD5FBCA}.Debug|x64.Build.0 = Debug|Any CPU
+		{AFCE536D-92FF-4EE5-8536-731D2CD5FBCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFCE536D-92FF-4EE5-8536-731D2CD5FBCA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFCE536D-92FF-4EE5-8536-731D2CD5FBCA}.Release|x64.ActiveCfg = Release|Any CPU
+		{AFCE536D-92FF-4EE5-8536-731D2CD5FBCA}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {70B6BC9C-21D8-44D3-9D8B-1C6C43F1BDE8}
 	EndGlobalSection
 EndGlobal
